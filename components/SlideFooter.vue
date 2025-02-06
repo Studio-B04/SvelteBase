@@ -1,4 +1,6 @@
 <script>
+import { title as projectTitle } from "./../package.json";
+
 const today = new Date();
 
 const day = [
@@ -42,7 +44,7 @@ const year = today.getFullYear();
         <img src="/logos/studiob04.svg" alt="" class="w-4" />
         <span>StudioB04</span>
         <small>|</small>
-        <span>Développeur Web - Les bases</span>
+        <span>Développeur Web {{ projectTitle ? ` - ${projectTitle}` : ""}}</span>
         <small>|</small>
         <span>{{ day }} {{ date }} {{ month }} {{ year }} </span>
         <span class="mis-auto">

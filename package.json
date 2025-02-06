@@ -1,5 +1,6 @@
 {
   "name": "formation_template",
+  "title": "TEMPLATE",
   "type": "module",
   "private": true,
   "scripts": {
