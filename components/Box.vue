@@ -25,7 +25,7 @@ export default {
 </script>
 
 <template>
-  <div class="box" :style="boxStyle">ici</div>
+  <div class="box" :style="boxStyle">&nbsp;</div>
 </template>
 
 <style scoped>
