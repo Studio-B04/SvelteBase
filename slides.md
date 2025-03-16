@@ -45,6 +45,11 @@ src: ./slides/programme.html
 ---
 
 --- 
-title: Introduction
-src: ./slides/moi.html
+title: Présentation de Svelte
+src: ./slides/presentation.html
+---
+
+--- 
+title: Présentation de Svelte
+src: ./slides/syntaxe.html
 ---

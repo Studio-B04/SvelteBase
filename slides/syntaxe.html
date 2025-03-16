@@ -1,0 +1,263 @@
+---
+layout: center
+transition: slide-up
+---
+
+<h1 class="!text-6xl -mbs-30">La syntaxe de Svelte</h1>
+
+<img
+  alt=""
+  src="/svelte-machine.png"
+  class="absolute inset-inline-0 bottom-10"
+/>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>La simplicité avant tout</h1>
+
+<p><b>Svelte</b> à été pensé dans le but d'être plus simple à comprendre, plus rapide à écrire et plus léger à éxécuter que ses concurrents.</p>
+<p v-click><b>Svelte</b> n'utilise pas de <b>JSX</b> ou de code spécifique mais uniquement de l'<b>HTML</b>, du <b>JS</b> (ou <b>TS</b>) et du <b>CSS</b>. Pas besoin d'apprendre un nouveau langage.</p>
+<p v-click>Les fichiers <b>Svelte</b> s'écrivent avec une extension en <kbd>.svelte</kbd>.</p>
+<div v-click flex mbs-10 mx-auto>
+  <Alert type="idea" title="Astuce" text='Pour le moment nous allons utiliser le **<a href="https://svelte.dev/playground">Playground</a>** de **Svelte**.'/>
+</div>
+<div v-click flex mbs-10 mx-auto>
+  <Alert type="information" title="Important" text='Pensez à créer un compte afin de pouvoir sauvegarder vos projets dans le **Playground**.'/>
+</div>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Un composant Svelte basique</h1>
+
+<div flex gap-10 items-start mbs-10>
+<div flex flex-col>
+<strong>MyComponent.svelte</strong>
+```svelte
+<script>
+  let name = 'world';
+</script>
+
+<h1>Hello {name}!</h1>
+```
+<strong mbs-5>App.svelte</strong>
+```svelte
+<script>
+  import MyComponent from './MyComponent.svelte';
+</script>
+
+<MyComponent /> <!-- Hello world -->
+```
+</div>
+
+<div>
+  <p>Ici on déclare un composant très simple, qui retourne simplement une balise <kbd>h1</kbd>.</p>
+  <p>Le composant contient une balise <kbd>script</kbd> qui contient la logique du composant.</p>
+  <p v-click>Notez que la variable <code>name</code> est écrite entre accolades. Tout ce qui est entre accolade sera interprété comme du <b>Javascript</b>, ainsi on peut tout a fait utiliser des fonctions comme <code>{name.toUpperCase()}</code></p>
+</div>
+</div>
+
+<p text-center><carbon-arrow-right /> Testons sur le <b><a href="https://svelte.dev/playground" target="_blank">Playground</a></b> de <b>Svelte</b>. </p>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Ajouter des propriétés</h1>
+
+<div flex gap-10 items-start mbs-10>
+<div flex flex-col>
+<strong>MyComponent.svelte</strong>
+```svelte
+<script>
+  let {name} = $props();
+</script>
+
+<h1>Hello {name}!</h1>
+```
+<strong mbs-5>App.svelte</strong>
+```svelte
+<script>
+  import MyComponent from './MyComponent.svelte';
+</script>
+
+<MyComponent name="John"/> <!-- Hello John -->
+<MyComponent name="Bill"/> <!-- Hello Bill -->
+```
+</div>
+
+<div>
+<p>La rune <b>$props()</b> est une fonction qui va retourner toutes les propriétés qui sont passées au composant.</p>
+<p v-click>On peut également souhaiter une valeur par défaut si jamais aucune propriété <b>name</b> n'est passée au composant.</p>
+<div v-after>
+```svelte
+<script>
+  let {name} = $props();
+</script>
+
+<h1>Hello {name}!</h1>
+```
+</div>
+</div>
+</div>
+
+<p text-center><carbon-arrow-right /> Testons sur le <b><a href="https://svelte.dev/playground" target="_blank">Playground</a></b> de <b>Svelte</b>. </p>
+
+<SlideFooter/>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Les propriétés raccourcies</h1>
+
+<p>En <b>Svelte</b>, si le nom d'une propriété <b>HTML</b> et sa valeur sont identiques, on peut alors utiliser une écriture simplifiée :</p>
+
+<div v-click flex gap-10 mbs-3>
+```svelte
+<!-- Image.svelte -->
+<script>
+  const {src, width, alt} = $props()
+</script>
+
+<img src={src} width={width} alt={alt} />
+```
+
+```svelte
+<!-- App.svelte -->
+<script>
+  import Image from './Image.svelte';
+</script>
+
+<Image 
+  src="https://picsum.photos/200"
+  width="250px"
+  alt="lorem ipsum"
+/>
+```
+</div>
+
+<div flex gap-10 items-center>
+<p v-click>On peut alors simplifier l'écriture comme ceci :</p>
+
+<div v-after class="flex mbs-5">
+```svelte 
+<img {src} {width} {alt} />
+```
+</div>
+</div>
+
+<Arrow v-after v-bind="{ color: '#f43f5e',x1:350, y1:295, x2:480, y2:420,  }"/>
+
+<p v-click text-center><carbon-arrow-right /> Testons sur le <b><a href="https://svelte.dev/playground" target="_blank">Playground</a></b> de <b>Svelte</b>. </p>
+  
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+<h1>Utilisation de TypeScript</h1>
+
+<p>Si on le souhaite, on peut utiliser <b>Svelte</b> avec <b>TypeScript</b>. Dans ce cas, il faut le préciser grâce à l'attribut <kbd>lang</kbd> de la balise <kbd>&lt;script/&gt;</kbd>.</p>
+
+<div v-click flex mbs-15 justify-center>
+```svelte
+<script lang="ts">
+  let { name = "world" } : { name : string | undefined } = $props();
+</script>
+
+<h1>Hello {name}!</h1>
+```
+</div>
+<Arrow v-after v-bind="{ color: '#f43f5e',x1:350, y1:150, x2:350, y2:215,  }"/>
+
+
+<div v-click mbs-20 flex justify-center>
+  <Alert type="danger" title="Important !" text="Bien sûr il faudra installer et configurer **TypeScript** dans votre projet."/>
+</div>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+<h1>Ajouter du style</h1>
+
+<p>En <b>Svelte</b>, pour styliser un composant, il faut utilsier la balise <kbd>style</kbd> :</p>
+
+<div v-click flex gap-5 mbs-5>
+```svelte
+<script>
+  let {name} = $props();
+</script>
+
+<h1>Hello {name}!</h1>
+
+<style>
+  h1 { color: red; }
+</style>
+```
+
+<div>
+  <p>Il n'est pas nécessaire d'utilier une classe ou un ID pour cibler le <kbd>h1</kbd> du composant puisque le code CSS est scopé.</p>
+  <p>C'est à dire qu'il n'aura aucun effet sur les autres éléments <kbd>h1</kbd> de la page.</p>
+</div>
+</div>
+
+<div v-click flex gap-5 mbs-5>
+```svelte
+<style>
+  @import './MyComponent.css';
+</style>
+```
+
+<div>
+  <p>Il est bien sur possible d'importer un fichier CSS externe, il sera alors scopé lui aussi.</p>
+</div>
+</div>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+<h1>Utilisation d'un préprocesseur CSS</h1>
+
+<p>Si on le souhaite, on peut utiliser un préprocesseur CSS comme <b>SCSS</b> ou <b>LESS</b>. Dans ce cas, il faut le préciser grâce à l'attribut <kbd>lang</kbd> de la balise <kbd>&lt;style/&gt;</kbd>.</p>
+
+<div v-click flex mbs-15 justify-center>
+```svelte
+<style lang="scss">
+  $titleColor: red;
+  h1 { color: $titleColor; }
+</style>
+
+<h1>Hello {name}!</h1>
+```
+</div>
+<Arrow v-after v-bind="{ color: '#f43f5e',x1:520, y1:150, x2:520, y2:215,  }"/>
+
+
+<div v-click mbs-10 flex justify-center>
+  <Alert type="danger" title="Important !" text="Bien sûr il faudra installer et configurer **SCSS** dans votre projet."/>
+</div>
+
+<SlideFooter/>

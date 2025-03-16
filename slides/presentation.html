@@ -1,0 +1,131 @@
+---
+layout: center
+transition: slide-up
+---
+
+<h1 class="!text-6xl -mbs-30">C'est quoi Svelte ? </h1>
+
+<img
+  alt=""
+  src="/svelte-machine.png"
+  class="absolute inset-inline-0 bottom-10"
+/>
+
+<SlideFooter/>
+
+---
+layout: image-right
+image: rich-harris.jpg
+transition: slide-up
+--- 
+
+<h1>Un peu d'histoire.</h1>
+
+<p class="!text-balance"><b>Svelte</b> est une librairie Javascript open-source apparue en novembre 2016 et créée par <b>Rich&nbsp;Harris</b>.</p>
+<p v-click><b>Rich Harris</b> est un développeur britannique, qui a commencé sa carrière comme journaliste pour <b><i>The Guardian</i></b> et plus tard au <b><i>New York Times</i></b>.</p>
+<p v-click>Il a développé <b>Svelte</b> en réponse aux frameworks populaires comme <b>React</b> et <b>Vue</b> qu'il jugeait trop lourds.</p>
+<p v-click>Contrairement à ces derniers, <b>Svelte</b> est compilé en javascript pur et n'a besoin d'aucun package supplémentaire pour fonctionner.</p>
+<p v-click>Cela permet de produire un code final plus léger et plus performant.</p>
+
+<SlideFooter/>
+
+
+---
+layout: image-right
+image: rich-harris.jpg
+transition: slide-up
+--- 
+<h1>Un peu d'histoire.</h1>
+
+<p><b>Rich&nbsp;Harris</b> est un contributeur majeur de la communauté Javascript. Il a notament participé à la creation de :</p>
+<ul class="font-bold mis-5 -mbe-3">
+  <li v-click>Ractive.js (pour TheGuardian.com)</li>
+  <li v-click>Rollup</li>
+  <li v-click>Vite</li>
+  <li v-click>etc.</li>
+</ul>
+<p v-click>Il travaille aujourd'hui pour <b>Vercel</b>, une entreprise spécialisée dans les outils pour les développeurs front-end, afin de continuer à travailler sur <b>Svelte</b> à plein temps.</p>
+<p v-click><b>Rich Harris</b> est un défenseur de la simplicité dans le développement web. Il critique souvent les approches qui compliquent inutilement les outils et les workflows des développeurs.</p>
+
+<SlideFooter/>
+
+
+---
+layout: default
+transition: slide-up
+---
+
+<h1>2016, création de Svelte</h1>
+
+<p><b>Svelte</b> est une librairie Javascript qui permet de créer simplement des composants réactifs.</p>
+<p v-click>La toute première version de <b>Svelte</b> date du 29 Novembre 2016. Elle a été écrite en <b>Javascript</b>. Ce n'est qu'à partir de la version 3 que <b>Svelte</b> utilise <b>TypeScript</b>.</p>
+<p v-click>La <b>version 5</b> de Svelte est sortie en Octobre 2024.</p>
+<div class="flex w-full justify-center mbs-5">
+  <img src="/logos/svelte-full.svg" alt="" class="w-[500px]">
+</div>
+<div v-after class="flex mx-auto justify-center mbs-5">
+  <Alert type="warning" title="Attention" text="La version 5 de Svelte est relativement récente et pas encore largement déployée, <br/>Pour accéder à la documentation de **Svelte 4**, utilisez ce lien : [https://v4.svelte.dev](https://v4.svelte.dev)"/>
+</div>
+
+<SlideFooter/>
+
+
+
+---
+layout: default
+transition: slide-up
+---
+
+<h1>Qui utilise Svelte ? </h1>
+
+<p>Svelte est encore confidentiel et bien moins utilisé que <b>React</b> par exemple. Cependant il est utilisé par des entreprises majeurs comme :</p>
+<ul class="mbs-5 mx-15 flex flex-col gap-1">
+  <ListItem label="**The New York Times**" image="logos/times.svg" link="https://www.nytimes.com/"  />
+  <ListItem label="**IKEA**" image="logos/ikea.svg" link="https://www.ikea.com/fr/fr/"  />
+  <ListItem label="**Apple**" image="logos/apple.svg" link="https://www.apple.com/fr/"  />
+  <ListItem label="**Spotify**" image="logos/spotify.svg" link="https://open.spotify.com/intl-fr"  />
+  <ListItem label="**Rakuten**" image="logos/rakuten.svg" link="https://fr.shopping.rakuten.com/"  />
+  <ListItem label="**Decathlon**" image="logos/decathlon.svg" link="https://www.decathlon.fr/"  />
+  <ListItem label="**etc...**"/>
+</ul>
+
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Que dit la communauté JS ?</h1>
+
+<div v-click flex gap-10 items-center mbs-10>
+  <p shrink><b>Svelte</b> est largement apprécié par les développeurs qui l'ont testé, comme le montre le site <a href="https://2024.stateofjs.com/en-US/libraries/front-end-frameworks/" target="_blank">StateOfJS</a>.</p>
+  <a shrink-0 href="https://2024.stateofjs.com/en-US/libraries/front-end-frameworks/" target="_blank">
+    <img src="/stateofjs.png" alt="" class="w-[650px]">
+  </a>
+</div>
+
+<SlideFooter/>
+
+
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-left
+--- 
+
+<h1>Les principes clés de Svelte</h1>
+
+<p><b>Svelte</b> propose un changement de paradigme : plutôt que de se reposer sur l'utilisation du <b>VirtualDOM</b> pour manipuler le <b>DOM</b> comme le fait <b>React</b> par exemple, ou du <b>ShadowDom</b> comme pour les <b>WebComponents</b>, <b>Svelte</b> va générer toute la logique lors de la compilation du code.</p>
+<p v-click>Cette approche apporte des bénéfices majeurs :</p>
+<ul class="mbs-10 mis-5">
+  <ListItem label="Les performances sont grandement améliorées car il y a moins de code à exécuter lors du changement d'état d'un composant."/>
+  <ListItem label="Le poids du code une fois compilé est largement inférieur aux autres solutions du marché."/>
+  <ListItem label="Le code est compilé en **Javascript** natif et n'a besoin d'aucune dépendance pour fonctionner."/>
+  <ListItem label="Le **Javascript** dans l'**HTML**, et pas l'inverse comme avec **React** !"/>
+</ul>
+
+<SlideFooter/>
