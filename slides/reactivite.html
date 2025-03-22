@@ -1,0 +1,138 @@
+---
+layout: center
+transition: slide-up
+---
+
+<h1 class="!text-6xl -mbs-30">La réactivité</h1>
+
+<img
+  alt=""
+  src="/svelte-machine.png"
+  class="absolute inset-inline-0 bottom-10"
+/>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>La réactivité en Svelte</h1>
+
+<p>À l'instar de <b>React</b> qui utilise le hook <kbd>useState()</kbd> pour créer des variables réactives, <b>Svelte</b> utilise la rune <kbd>$state()</kbd>.</p>
+<p>En revanche, une fois déclarée, une variable peut être mise à jour directement :</p>
+
+<div v-click flex mbs-10 items-center gap-15>
+```svelte
+<script>
+  let count = $state(0); 
+</script>
+
+<h1>Vous avez cliqué { count } fois.</h1>
+
+<button onclick={() => count++}>
+  Cliquez-moi
+</button>
+```
+
+<p>Le message "Vous avez cliqué X fois." sera mis à jour à chaque changement de la valeur de count, car cette variable est réactive.</p>
+</div>
+
+<SlideFooter/>
+
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>La réactivité en Svelte</h1>
+
+<p>En revanche, si une variable est calculée à partir d'une variable réactive, elle ne l'est pas pour autant:</p>
+
+<div v-click flex mbs-10 items-center gap-15>
+```svelte
+<script>
+  let count = $state(0); 
+  let double = count * 2;
+</script>
+
+<h1>Vous avez cliqué { count } fois.</h1>
+<h2>double = { double }</h2>
+
+<button onclick={() => count++}>
+  Cliquez-moi
+</button>
+```
+
+<Alert type="warning" title="Attention" text="Svelte retournera une erreur si vous tentez de mettre à jour une variable calculée."/>
+</div>
+
+<SlideFooter/>
+
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>La réactivité en Svelte</h1>
+
+<p>Pour déclarer une variable dont la valeur est calculée à partir d'une variable réactive<br/>(on parle alors de variable dérivée), il faudra utiliser la rune <kbd>$derived()</kbd> :</p>
+
+<div v-click flex mbs-10 items-center gap-15>
+```svelte
+<script>
+  let count = $state(0); 
+  let double = $derived(count * 2);
+</script>
+
+<h1>Vous avez cliqué { count } fois.</h1>
+<h2>double = { double }</h2>
+
+<button onclick={() => count++}>
+  Cliquez-moi
+</button>
+```
+
+<p>Maintenant la variable <b>double</b> sera mise à jour en même temps que <b>count</b>.</p>
+</div>
+
+<SlideFooter/>
+
+
+---
+layout: default
+transition: slide-left
+--- 
+
+<h1>La réactivité en Svelte</h1>
+
+<p>Parfois il est nécessaire d'executer une fonction chaque fois qu'une variable est mise à jour.<br/>On parle alors d'effet de bord.</p>
+<p>En <b>React</b> il y a le hook <kbd>useEffet()</kbd>, en <b>Svelte</b> il y a la rune <kbd>$effect()</kbd> :</p>
+
+<div v-click flex mbs-5 items-center gap-15>
+```svelte
+<script>
+  let count = $state(0); 
+
+  $effect(() => {
+    console.log('count a changé : ', count);
+  });
+</script>
+
+<h1>Vous avez cliqué { count } fois.</h1>
+
+<button onclick={() => count++}>
+  Cliquez-moi
+</button>
+```
+
+<div>
+  <p>Chaque fois que count sera mise à jour, la fonction dans la rune <kbd>$effect()</kbd> sera exécutée.</p>
+  <Alert type="information" title="Important" text="Notez que la rune $effect n'a pas besoin d'un tableau de dépendance comme en **React**, la réactivité est automatique en fonction des valeur utilisées dans la fonction."/>
+</div>
+</div>
+
+<SlideFooter/>

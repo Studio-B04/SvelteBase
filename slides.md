@@ -50,6 +50,26 @@ src: ./slides/presentation.html
 ---
 
 --- 
-title: Présentation de Svelte
+title: La syntaxe de Svelte
 src: ./slides/syntaxe.html
+---
+
+--- 
+title: Les conditions
+src: ./slides/conditions.html
+---
+
+--- 
+title: Les boucles
+src: ./slides/boucles.html
+---
+
+--- 
+title: Les évènements
+src: ./slides/evenements.html
+---
+
+--- 
+title: la réactivité
+src: ./slides/reactivite.html
 ---

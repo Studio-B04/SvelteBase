@@ -1,0 +1,195 @@
+---
+layout: center
+transition: slide-up
+---
+
+<h1 class="!text-6xl -mbs-30">Les boucles</h1>
+
+<img
+  alt=""
+  src="/svelte-machine.png"
+  class="absolute inset-inline-0 bottom-10"
+/>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Les boucles dans les templates Svelte</h1>
+
+<p>Pour itérer sur des objets ou des tableaux en <b>Svelte</b>, il faut utiliser la syntaxe :</p>
+
+<div v-click flex mbs-5>
+```svelte {*}{lines:false}
+{#each items as item} ... {/each}
+```
+</div>
+  
+
+<div v-click flex mbs-5 gap-15 items-center>
+```svelte
+<script>
+  const users = [ "John", "Bill", "Eric", "Jack", "Jane" ]
+</script>
+
+<ol>
+  {#each users as user}
+    <li>{user}</li>
+  {/each}
+</ol>
+```
+<ol>
+  <li>John</li>
+  <li>Bill</li>
+  <li>Eric</li>
+  <li>Jack</li>
+  <li>Jane</li>
+</ol>
+</div>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Les boucles dans les templates Svelte</h1>
+
+<p>Si on souhaite récupérer l'index courant de chaque élement de la boucle, il faut passer un deuxième paramètre :</p>
+
+<div v-click flex mbs-5>
+```svelte {*}{lines:false}
+{#each items as item, index} ... {/each}
+```
+</div>
+  
+
+<div v-click flex mbs-5 gap-15 items-center>
+```svelte
+<script>
+  const users = [ "John", "Bill", "Eric", "Jack", "Jane" ]
+</script>
+
+<ul>
+  {#each users as user, index}
+    <li>#{index + 1} : {user}</li>
+  {/each}
+</ul>
+```
+<ul>
+  <li>#1 : John</li>
+  <li>#2 : Bill</li>
+  <li>#3 : Eric</li>
+  <li>#4 : Jack</li>
+  <li>#5 : Jane</li>  
+</ul>
+</div>
+
+<div v-after flex mx-60 mbs-5>
+  <Alert type="warning" title="Attention" text="Comme en Javascript, les index commencent à 0 !"/>
+</div>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Les boucles dans les templates Svelte</h1>
+
+<p>En <b>Svelte</b> il est possible très simplement de gérer le cas où l'objet itérable est vide :</p>
+
+<div v-click flex mbs-5>
+```svelte {*}{lines:false}
+{#each items as item, index} ... {:else} ... {/each}
+```
+</div>
+  
+
+<div v-click flex mbs-5 gap-15 items-center>
+```svelte
+<script>
+  const users = [ ]
+</script>
+
+<ul>
+  {#each users as user, index}
+    <li>#{index + 1} : {user}</li>
+  {:else}
+    <li>Il n'y a aucun utilisateurs</li>
+  {/each}
+</ul>
+```
+<ul>
+  <li>Il n'y a aucun utilisateurs</li>  
+</ul>
+</div>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Les boucles dans les templates Svelte</h1>
+
+<p>il peut être parfois indispensable dans les boucles d'identifier chaque élément par une clé unique.</p>
+<p>En <b>React</b> il existe l'attribut <kbd>key</kbd> à placer sur le premier élément de la boucle. En <b>Svelte</b>, c'est plus simple, on précise simplement la clé entre parenthèse dans la boucle :</p>
+
+<div v-click flex mbs-5>
+```svelte {*}{lines:false}
+{#each items as item (key)} ... {/each}
+```
+</div>
+  
+
+<div v-click flex mbs-2 gap-5 items-center>
+```svelte
+<script>
+  const users = [
+    {firstname: "John", lastname: "Doe" },
+    {firstname: "Bill", lastname: "Gates" }
+  ]
+</script>
+<ul>
+  {#each users as user, index (user.firstname)}
+    <li>#{index + 1} : {user.firstname} {user.lastname}</li>
+  {/each}
+</ul>
+```
+<ul>
+  <li>#1: John Doe</li>  
+  <li>#2: Bill Gates</li>
+</ul>
+</div>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-left
+--- 
+
+<h1>A vous de jouer</h1>
+
+<p>Utilisez le playground de <b>Svelte</b> pour créer un composant qui liste les jours de la semaine à partir du tableau <kbd>['Dimanche', 'Lundi', 'Mardi', ...]</kbd> sous forme de liste avec l'index du jour :</p>
+<p>Vous devrez utiliser les conditions pour ajouter "Aujourd'hui" à coté du jour qui correspond à la date d'aujourd'hui: </p>
+
+<ul mbs-5 mis-20>
+  <li>#1 : Dimanche</li>
+  <li>#2 : Lundi</li>
+  <li>#3 : Mardi</li>
+  <li>#4 : Mercredi</li>
+  <li>#5 : Jeudi (Aujourd'hui)</li>
+  <li>#6 : Vendredi</li>
+  <li>#7 : Samedi</li>
+</ul>
+
+
+<SlideFooter/>

@@ -1,0 +1,164 @@
+---
+layout: center
+transition: slide-up
+---
+
+<h1 class="!text-6xl -mbs-30">Les conditions</h1>
+
+<img
+  alt=""
+  src="/svelte-machine.png"
+  class="absolute inset-inline-0 bottom-10"
+/>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Les conditions dans les templates Svelte</h1>
+
+<p>Dans un composant <b>Svelte</b> on peux souhaiter afficher un élement en fonction d'une condition booléene. Il faudra alors utiliser la syntaxe suivante : </p>
+
+<div v-click flex mbs-5>
+```svelte {*}{lines:false}
+{#if condition} ... {/if}
+```
+</div>
+
+<div v-click flex mbs-5 gap-5 items-center>
+```svelte
+<script>
+  let day = new Date().getDay();
+</script>
+
+{#if day % 2 === 0}
+  <p>C'est un jour pair</p>
+{/if}
+```
+
+<Alert type="idea" title="Explication" text="Ici on vérifie que le jour est pair avec une condition, si c'est le cas, la balise <kbd>p</kbd> est rendue, sinon le composant ne rendra rien."/>
+</div>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Les conditions dans les templates Svelte</h1>
+
+<p>Si on souhaite gérer le cas contraire, il faudra alors utiliser la syntaxe suivante : </p>
+
+<div v-click flex mbs-5>
+```svelte {*}{lines:false}
+{#if condition} ... {:else} ... {/if}
+```
+</div>
+
+<div v-click flex mbs-5 gap-5 items-center>
+```svelte
+<script>
+  let day = new Date().getDay();
+</script>
+
+{#if day % 2 === 0}
+  <p>C'est un jour pair</p>
+{:else}
+  <p>C'est un jour impair</p>
+{/if}
+```
+</div>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Les conditions dans les templates Svelte</h1>
+
+<p>Le code entre accolade sera exécuté comme du Javascript classique, il est alors possible de faire des conditions ternaires :</p>
+
+<div v-click flex mbs-5>
+```svelte {*}{lines:false}
+{condition ? ... : ...} 
+```
+</div>
+
+<div v-click flex mbs-5 gap-5 items-center>
+```svelte
+<script>
+  let day = new Date().getDay();
+</script>
+
+<p>{day % 2 === 0 ? "C'est un jour pair" : "C'est un jour impair"}</p>
+```
+</div>
+
+<div v-after flex mbs-5>
+  <Alert type="idea" title="Conseil" text="Privilégiez la solution qui vous parrait le plus simple mais surtout le plus lisible en fonction des cas. "/>
+</div>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Les conditions dans les templates Svelte</h1>
+
+<p>Comme en Javascript, il est possible de gérer plusieurs cas avec la syntaxe : </p>
+
+<div v-click flex mbs-5>
+```svelte {*}{lines:false}
+{#if condition} ... {:else if condition} ... {:else} ... {/if}
+```
+</div>
+
+<div v-click flex mbs-5 gap-5 items-center>
+```svelte
+<script>
+  let day = new Date().getDay();
+</script>
+
+{#if day === 0}
+  <p>Nous sommes dimanche</p>
+{:else if day === 1}
+  <p>Nous sommes lundi</p>
+{:else if day === 2}
+  <p>Nous sommes mardi</p>
+{:else}
+  <p>Nous sommes un autre jour de la semaine</p>
+{/if}
+```
+</div>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-left
+--- 
+
+<h1>A vous de jouer</h1>
+
+<p>Utilisez le playground de <b>Svelte</b> pour créer un composant qui affiche un message en fonction d'un nombre aléatoire :</p>
+<p v-click>Pour cela vous allez utiliser la fonction <code>Math.random()</code> qui va retourner un nombre entre 0 et 1. Vous devrez afficher une message en fonction du résultat :</p>
+<ul v-after mbs-5 mis-20>
+  <li>entre 0 et 0.25 :     ❌ </li>
+  <li>entre 0.25 et 0.5 :   ⚠️</li>
+  <li>entre 0.5 et 0.75 :   ✅</li>
+  <li>entre 0.75 et 1 :     🎉</li>
+</ul>
+
+<div v-click flex mbs-10>
+  <Alert type="idea" title="Bonus" text="Proposer une version avec la syntaxe <kbd>{#if}</kbd> et une version en ternaire."/>
+</div>
+
+<SlideFooter/>

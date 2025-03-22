@@ -1,0 +1,163 @@
+---
+layout: center
+transition: slide-up
+---
+
+<h1 class="!text-6xl -mbs-30">Les évenements</h1>
+
+<img
+  alt=""
+  src="/svelte-machine.png"
+  class="absolute inset-inline-0 bottom-10"
+/>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Les évènements en Svelte</h1>
+
+<p>Le fonctionnement de javascript dans une page web repose sur l'utilisation d'écouteurs d'événement.</p>
+<p>En <b>Svelte</b> on peut facilement écouter un événement avec <kbd>on</kbd> suivi de l'évènement qu'on veux écouter, par exemple <kbd>onclick</kbd>.</p>
+
+<div v-click flex mbs-5  gap-10 items-center>
+```svelte
+<script>
+  function onClick() { console.log('Clicked !'); }
+</script>
+
+<button onclick={onClick}>Click me</button>
+```
+
+<p>La fonction <kbd>onClick</kbd> sera exécutée à chaque click sur le boutton.</p>
+</div>
+
+<div v-click flex mbs-5 gap-10 items-center>
+  <Alert type="idea" title="Astuce" text="Comme pour les attributs, on peux utiliser l'écriture simplifiée !"/>
+
+```svelte
+<script>
+  function onclick() { console.log('Clicked !'); }
+</script>
+
+<button {onclick}>Click me</button>
+```
+</div>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Les évènements en Svelte</h1>
+
+<p>Tous les évènements natis peuvent êtres écoutés de cette façon :</p>
+
+<div flex mbs-5>
+```svelte
+<button {onclick}>Click me</button>
+<button {onfocus}>Click me</button>
+<button {onblur}>Click me</button>
+<button {onmouseenter}>Click me</button>
+<button {onmouseleave}>Click me</button>
+
+<input type="text" {onchange}> />
+<input type="text" {oninput}> />
+
+<form {onsubmit}>
+  ...
+</form>
+```
+</div>
+
+
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Les évènements en Svelte</h1>
+
+<p>Il est tout à fait possible d'avoir plusieurs écouteurs sur le même élément :</p>
+
+<div flex mbs-15>
+```svelte
+<button 
+  onclick={ doSomething } 
+  onclick={ doSomethingElse } 
+  {onfocus}
+  {onblur}
+>
+  Click me
+</button>
+```
+</div>
+
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-up
+--- 
+
+<h1>Les évènements custom</h1>
+
+<p>On peut avoir besoin d'émettre des événements custom depuis un composant, afin qu'ils soient écoutés par leur parents.</p>
+<p>Pour cela on va simplement passer l'évènement en propriété à l'enfant:</p>
+
+<div v-click flex mbs-5 items-center gap-5>
+```svelte
+<!-- Parent.svelte -->
+<script>
+  import Enfant from "./Enfant.svelte";
+</script>
+
+<Enfant oncustomevent={console.log} />
+```
+
+
+```svelte
+<!-- Enfant.svelte -->
+<script>
+  const { oncustomevent } = $props();
+</script>
+
+<button onclick={e => oncustomevent('ok')}>
+  Cliquez-moi
+</button>
+```
+</div>
+
+<div v-after flex mbs-5 mx-20>
+  <Alert type="idea" title="Explication" text="Chaque fois qu'on cliqur sur le bouton, la fonction <kbd>onclick</kbd> sera exécutée, et elle exécutera la function <kbd>oncustomevent</kbd> passée en propriété du composant Enfant."/>
+</div>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-left
+--- 
+
+<h1>A vous de jouer</h1>
+
+<p>Utilisez le playground de <b>Svelte</b> pour créer un composant qui affiche un champs text. Vous devrez :</p>
+
+<ul m-20>
+  <li>Afficher <b>"vous entrez dans le champs"</b> dans la console au <kbd>focus</kbd>.</li>
+  <li>Afficher <b>"vous quittez le champs"</b> dans la console au <kbd>blur</kbd>.</li>
+  <li>Afficher <b>le caractère qui est saisi</b> dans la console au <kbd>keypress</kbd>.</li>
+</ul>
+
+
+
+<SlideFooter/>

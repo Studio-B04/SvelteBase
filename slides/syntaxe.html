@@ -47,7 +47,7 @@ transition: slide-up
   let name = 'world';
 </script>
 
-<h1>Hello {name}!</h1>
+<h1>Hello { name }!</h1>
 ```
 <strong mbs-5>App.svelte</strong>
 ```svelte
@@ -62,7 +62,12 @@ transition: slide-up
 <div>
   <p>Ici on déclare un composant très simple, qui retourne simplement une balise <kbd>h1</kbd>.</p>
   <p>Le composant contient une balise <kbd>script</kbd> qui contient la logique du composant.</p>
-  <p v-click>Notez que la variable <code>name</code> est écrite entre accolades. Tout ce qui est entre accolade sera interprété comme du <b>Javascript</b>, ainsi on peut tout a fait utiliser des fonctions comme <code>{name.toUpperCase()}</code></p>
+  <p v-click>Notez que la variable <code>name</code> est écrite entre accolades. Tout ce qui est entre accolade sera interprété comme du <b>Javascript</b>, ainsi on peut tout a fait utiliser des fonctions comme</p>
+<div v-after>
+```svelte
+{ name.toUpperCase() }
+```
+</div>
 </div>
 </div>
 
@@ -82,10 +87,10 @@ transition: slide-up
 <strong>MyComponent.svelte</strong>
 ```svelte
 <script>
-  let {name} = $props();
+  let { name } = $props();
 </script>
 
-<h1>Hello {name}!</h1>
+<h1>Hello { name }!</h1>
 ```
 <strong mbs-5>App.svelte</strong>
 ```svelte
@@ -104,10 +109,10 @@ transition: slide-up
 <div v-after>
 ```svelte
 <script>
-  let {name} = $props();
+  let { name = "John" } = $props();
 </script>
 
-<h1>Hello {name}!</h1>
+<h1>Hello { name }!</h1>
 ```
 </div>
 </div>
@@ -126,7 +131,7 @@ transition: slide-up
 
 <h1>Les propriétés raccourcies</h1>
 
-<p>En <b>Svelte</b>, si le nom d'une propriété <b>HTML</b> et sa valeur sont identiques, on peut alors utiliser une écriture simplifiée :</p>
+<p v-click>En <b>Svelte</b>, si le nom d'une propriété <b>HTML</b> et sa valeur sont identiques, on peut alors utiliser une écriture simplifiée :</p>
 
 <div v-click flex gap-10 mbs-3>
 ```svelte
@@ -182,7 +187,7 @@ transition: slide-up
   let { name = "world" } : { name : string | undefined } = $props();
 </script>
 
-<h1>Hello {name}!</h1>
+<h1>Hello { name }!</h1>
 ```
 </div>
 <Arrow v-after v-bind="{ color: '#f43f5e',x1:350, y1:150, x2:350, y2:215,  }"/>
@@ -200,15 +205,15 @@ transition: slide-up
 --- 
 <h1>Ajouter du style</h1>
 
-<p>En <b>Svelte</b>, pour styliser un composant, il faut utilsier la balise <kbd>style</kbd> :</p>
+<p>En <b>Svelte</b>, pour styliser un composant, il faut utiliser la balise <kbd>style</kbd> :</p>
 
 <div v-click flex gap-5 mbs-5>
 ```svelte
 <script>
-  let {name} = $props();
+  let { name } = $props();
 </script>
 
-<h1>Hello {name}!</h1>
+<h1>Hello { name }!</h1>
 
 <style>
   h1 { color: red; }
@@ -216,7 +221,7 @@ transition: slide-up
 ```
 
 <div>
-  <p>Il n'est pas nécessaire d'utilier une classe ou un ID pour cibler le <kbd>h1</kbd> du composant puisque le code CSS est scopé.</p>
+  <p>Il n'est pas nécessaire d'utiliser une classe ou un ID spécifique pour cibler le <kbd>h1</kbd> du composant puisque le code CSS est <b>scopé</b>.</p>
   <p>C'est à dire qu'il n'aura aucun effet sur les autres éléments <kbd>h1</kbd> de la page.</p>
 </div>
 </div>
@@ -237,7 +242,7 @@ transition: slide-up
 
 ---
 layout: default
-transition: slide-up
+transition: slide-left
 --- 
 <h1>Utilisation d'un préprocesseur CSS</h1>
 
@@ -250,7 +255,7 @@ transition: slide-up
   h1 { color: $titleColor; }
 </style>
 
-<h1>Hello {name}!</h1>
+<h1>Hello { name }!</h1>
 ```
 </div>
 <Arrow v-after v-bind="{ color: '#f43f5e',x1:520, y1:150, x2:520, y2:215,  }"/>
