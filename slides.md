@@ -73,3 +73,13 @@ src: ./slides/evenements.html
 title: la réactivité
 src: ./slides/reactivite.html
 ---
+
+--- 
+title: le binding
+src: ./slides/binding.html
+---
+
+--- 
+title: Passons à la pratique
+src: ./slides/TP.html
+---

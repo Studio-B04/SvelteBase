@@ -1,0 +1,43 @@
+--- 
+layout: center
+transition: slide-up
+class: text-center
+--- 
+
+<h1 class="!text-6xl">Travaux pratiques</h1>
+
+<h2 class="text-light">Création d'une todo list</h2>
+
+<SlideFooter/>
+
+
+
+---
+layout: default
+transition: slide-left
+--- 
+<h1>Création d'une todo list</h1>
+
+
+<div class="flex gap-10 items-start">
+  <div class="shrink-0">
+    <img alt="" src="/todo-list.png" class="w-[350px] h-auto" />
+    <p v-click="9" class="!mbs-30">Démonstration sur le <a  href="https://svelte.dev/playground/69bcf9700b534fd389a08fe2b0c9a8f0?version=5.16.0" target="_blank">Playground</a></p>
+  </div>
+
+  <div>
+    <p v-click class="!mbe-0">Nous allons mettre en application les différents points que nous avons abordés ce matin.</p>
+    <h2 v-after class="!mbs-5 !mbe-3 !text-xl text-primary">L'objectif du TP: </h2>
+    <ul>
+      <ListItem label="On saisit une tâche dans le champs texte, quand on tape **Entrée**, une tâche s'ajoute à la liste."/>
+      <ListItem label="Si on coche une case dans la liste **todo**, la tâche passe dans l'autre liste et la case est cochée."/>
+      <ListItem label="Si on décoche une case dans la liste **done**, la tâche repasse dans l'autre liste et la case est décochée."/>
+      <ListItem label="Au click sur le bouton **delete** la tâche est supprimée de la liste ou elle se trouve."/>
+      <ListItem label="**_BONUS :_** Ajout d'un bouton pour éditer chaque tâche de la liste **todo**."/>
+    </ul>
+    <h2 v-click class="!mbs-5 !mbe-3 !text-xl text-primary">Temps alloué : 4 heures</h2>
+  </div>
+</div>
+
+
+<SlideFooter/>

@@ -1,0 +1,165 @@
+---
+layout: center
+transition: slide-up
+---
+
+<h1 class="!text-6xl -mbs-30">Le binding</h1>
+
+<img
+  alt=""
+  src="/svelte-machine.png"
+  class="absolute inset-inline-0 bottom-10"
+/>
+
+<SlideFooter/>
+
+
+---
+layout: default
+transition: slide-up
+---
+<h1>Le binding</h1>
+
+<p>En <b>Svelte</b>, les données circulent généralement du parent à l'enfant. La directive <kbd>bind:</kbd> permet aux données de circuler dans l'autre sens, de l'enfant au parent.</p>
+
+<p>Le mot clé <kbd>bind</kbd> permet de faire correspondre un attribut HTML à une variable. <br>Par exemple ce code peut facilement être simplifié :</p>
+
+<div v-click flex gap-10 items-center>
+```svelte
+<script>
+  let value = $state("initial value");
+
+  function oninput(e) {
+    value = e.target.value;
+  }
+</script>
+
+<input type="text" {oninput} {value}>
+<h1>{value}</h1>
+```
+
+<div>
+  <p>Ici, on modifie la valeur de "value" à chaque fois que la saisie dans le champs text évolue. Ce qui permet de l'affcher dans une balise <kbd>h1</kbd> en dessous.</p>
+  <p>Cela fonctionne mais il y a une façon plus simple de faire avec <kbd>bind:</kbd>.</p>
+</div>
+
+</div>
+
+<SlideFooter/>
+
+
+---
+layout: default
+transition: slide-up
+---
+<h1>Le binding</h1>
+
+<p>Avec le mot clé <kbd>bind:</kbd>, on peux faire correspondre n'importe quel attribut HTML à une variable, ici l'attribut <code>value</code> de l'élément <kbd>input</kbd>.</p>
+
+<div v-click flex mbs-5 gap-10 items-center>
+```svelte
+<script>
+  let value = $state("initial value");
+</script>
+
+<input type="text" bind:value={value}>
+<h1>{value}</h1>
+```
+
+<p>On peut donc se passer la fonction oninput !</p>
+</div>
+
+<div v-click flex mbs-5 gap-10 items-center>
+<p>On peut même utiliser l'écriture simplifié puisque l'attribut et la variable ont le même nom !</p>
+
+```svelte
+<script>
+  let value = $state("initial value");
+</script>
+
+<input type="text" bind:value>
+<h1>{value}</h1>
+```
+
+<Arrow v-after v-bind="{ color: '#f43f5e', x1:435, y1:275, x2:590, y2:440,  }"/>
+
+</div>
+
+<SlideFooter/>
+
+
+---
+layout: default
+transition: slide-up
+---
+<h1>Le binding</h1>
+
+<p>Il est possible de binder n'importe quel attribut natif d'élément avec <kbd>bind;</kbd>, essayez d'analyser ce qui va se passer dans ces deux exemples :</p>
+
+<div v-click flex mbs-5>
+```svelte
+<script>
+  let height = $state(0);
+</script>
+
+<textarea bind:clientHeight={height}>lorem ipsum</textarea>
+<h1>{height}</h1>
+```
+</div>
+
+<div v-click flex mbs-5>
+```svelte
+<script>
+  let color = $state("#FF55FF");
+</script>
+
+<input type="color" bind:value={color}>
+<h1 style="color: {color};"> {color}</h1>
+```
+</div>
+
+<SlideFooter/>
+
+
+---
+layout: default
+transition: slide-up
+---
+<h1>Le binding</h1>
+
+<p>Il est également possible de binder l'élément lui même sur une variable avec <kbd>bind:this</kbd> :</p>
+
+<div v-click flex mbs-10 gap-10 items-center>
+```svelte
+<script>
+  let element = $state();
+
+  $effect(() => {
+    console.log(element.innerText);
+  });
+</script>
+
+<p bind:this={element}>
+	lorem ispum dolor sit amet
+</p>
+
+```
+
+<p>Au chargement de la page, le contenu de la balise <kbd>p</kbd> sera loggué dans la console.</p>
+</div>
+
+<SlideFooter/>
+
+---
+layout: default
+transition: slide-left
+--- 
+
+<h1>A vous de jouer</h1>
+
+<p>Utilisez le playground de <b>Svelte</b> pour créer un composant qui input de type number ou de type range et un paragraphe de texte.</p>
+<p>Bindez la valeur de l'input sur une variable et affecter cette varaible à la font-size du paragraphe.</p>
+<p>L'objectif et d'augmenter ou diminiuer la taille du text en fonction de la valeur du champs</p>
+
+
+<SlideFooter/>
