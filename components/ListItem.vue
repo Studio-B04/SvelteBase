@@ -17,7 +17,7 @@ export default {
 </script>
 
 <template>
-  <li v-click x-motion :duration="250" :initial="{ x: 200 }" :enter="{ x: 0 }" class="ListItem">
+  <li v-click v-motion :duration="250" :initial="{ x: 200 }" :enter="{ x: 0 }" class="ListItem">
     <div class="flex gap-5 items-center justify-between">
       <span v-html="renderedLabel"></span>
       
